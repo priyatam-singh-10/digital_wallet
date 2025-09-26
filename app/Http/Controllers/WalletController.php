@@ -66,46 +66,6 @@ public function addFunds(Request $request)
     ]);
 }
 
-// public function transfer(Request $request) 
-// {
-//     $request->validate([
-//         'email'=>'required|email|exists:users,email',
-//         'amount'=>'required|numeric|min:1',
-//     ]);
-
-//     $fromWallet = auth()->user()->wallet;
-//     $toUser = User::where('email',$request->email)->first();
-//     $toWallet = $toUser->wallet;
-
-//     if($fromWallet->balance < $request->amount){
-//         return response()->json(['error'=>'Insufficient balance'],400);
-//     }
-
-//     $fromWallet->balance -= $request->amount;
-//     $fromWallet->save();
-//     Transaction::create([
-//         'wallet_id'=>$fromWallet->id,
-//         'type'=>'debit',
-//         'amount'=>$request->amount,
-//         'balance_after'=>$fromWallet->balance,
-//         'currency'=>$fromWallet->currency,
-//         'remark'=>"Transfer to {$toUser->email}"
-//     ]);
-
-//     $toWallet->balance += $request->amount;
-//     $toWallet->save();
-//     Transaction::create([
-//         'wallet_id'=>$toWallet->id,
-//         'type'=>'credit',
-//         'amount'=>$request->amount,
-//         'balance_after'=>$toWallet->balance,
-//         'currency'=>$toWallet->currency,
-//         'remark'=>"Received from ".auth()->user()->email
-//     ]);
-
-//     return response()->json(['message'=>'Transfer successful','balance'=>$fromWallet->balance]);
-// }
-
 public function transfer(Request $request) 
 {
     $request->validate([
